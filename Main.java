@@ -28,10 +28,13 @@ public class Main {
 
                 sc.nextLine(); // Consume newline
 
+                long startTime, endTime, duration; // Biến để lưu thời gian bắt đầu, kết thúc và độ trễ
+
                 switch (choice) {
                     case 1:
+                        // Đo thời gian cho việc thêm sinh viên
+                        startTime = System.nanoTime();
                         String name;
-                        // Kiểm tra tính hợp lệ của tên
                         while (true) {
                             System.out.print("Enter Student Name: ");
                             name = sc.nextLine();
@@ -46,31 +49,71 @@ public class Main {
                         double marks = sc.nextDouble();
                         sc.nextLine(); // Consume newline
                         manager.add(name, marks);
+                        endTime = System.nanoTime();
+                        duration = endTime - startTime;
+                        System.out.println("Time taken to add student: " + duration + " nanoseconds.");
                         break;
+
                     case 2:
+                        // Đo thời gian cho việc sửa thông tin sinh viên
+                        startTime = System.nanoTime();
                         System.out.print("Enter Student ID to edit: ");
                         String studentId = sc.nextLine();
                         manager.edit(studentId, sc);
+                        endTime = System.nanoTime();
+                        duration = endTime - startTime;
+                        System.out.println("Time taken to edit student: " + duration + " nanoseconds.");
                         break;
+
                     case 3:
+                        // Đo thời gian cho việc xóa sinh viên
+                        startTime = System.nanoTime();
                         System.out.print("Enter Student ID to delete: ");
                         String id = sc.nextLine();
                         manager.delete(id);
+                        endTime = System.nanoTime();
+                        duration = endTime - startTime;
+                        System.out.println("Time taken to delete student: " + duration + " nanoseconds.");
                         break;
+
                     case 4:
+                        // Đo thời gian cho việc tìm kiếm sinh viên
+                        startTime = System.nanoTime();
                         System.out.print("Enter Student ID or Name to search: ");
                         String query = sc.nextLine();
                         manager.search(query);
+                        endTime = System.nanoTime();
+                        duration = endTime - startTime;
+                        System.out.println("Time taken to search student: " + duration + " nanoseconds.");
                         break;
+
                     case 5:
+                        // Đo thời gian cho việc sắp xếp sinh viên (Bubble Sort)
+                        startTime = System.nanoTime();
                         manager.bubbleSortStudents();
+                        endTime = System.nanoTime();
+                        duration = endTime - startTime;
+                        System.out.println("Time taken for Bubble Sort: " + duration + " nanoseconds.");
                         break;
+
                     case 6:
+                        // Đo thời gian cho việc sắp xếp sinh viên (Selection Sort)
+                        startTime = System.nanoTime();
                         manager.selectionSortStudents();
+                        endTime = System.nanoTime();
+                        duration = endTime - startTime;
+                        System.out.println("Time taken for Selection Sort: " + duration + " nanoseconds.");
                         break;
+
                     case 7:
+                        // Đo thời gian cho việc hiển thị tất cả sinh viên
+                        startTime = System.nanoTime();
                         manager.display();
+                        endTime = System.nanoTime();
+                        duration = endTime - startTime;
+                        System.out.println("Time taken to display students: " + duration + " nanoseconds.");
                         break;
+
                     case 8:
                         System.out.println("Exiting the program.");
                         break;

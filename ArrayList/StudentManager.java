@@ -12,7 +12,7 @@ public class StudentManager {
         students = new ArrayList<>(); // Khởi tạo ArrayList
     }
 
-    // Kiểm tra tính hợp lệ của tên
+    // Kiểm tra tính hợp lệ của tênA
     private boolean isValidName(String name) {
         return Pattern.matches("[a-zA-Z\\s]+", name);
     }
@@ -46,14 +46,12 @@ public class StudentManager {
                     }
                     student.setName(newName);
                 }
-
                 System.out.print("Enter new marks (or -1 to keep current): ");
                 double newMarks = sc.nextDouble();
                 sc.nextLine(); // Consume newline
                 if (newMarks >= 0) {
                     student.setMarks(newMarks);
                 }
-
                 System.out.println("Student updated: " + student);
                 return;
             }
@@ -72,6 +70,7 @@ public class StudentManager {
         System.out.println("Student not found.");
     }
 
+    // tim kiem
     public void search(String query) {
         boolean found = false;
         for (Students student : students) {
@@ -84,6 +83,31 @@ public class StudentManager {
             System.out.println("No student found with ID or Name: " + query);
         }
     }
+    // Thêm hàm tìm kiếm nhị phân theo ID hoặc tên
+    public void binarySearch(String query) {
+        BubbleStudents();
+        int low = 0;
+        int high = students.size() - 1;
+        boolean found = false;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            Students student = students.get(mid);
+            if (student.getId().equals(query) || student.getName().equalsIgnoreCase(query)) {
+                System.out.println("Student found: " + student);
+                found = true;
+                break;
+            } else if (student.getId().compareTo(query) > 0 ||
+                    student.getName().compareToIgnoreCase(query) > 0) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        if (!found) {
+            System.out.println("No student found with ID or Name: " + query);
+        }
+    }
+
 
     // Hàm sắp xếp nổi bọt để sắp xếp sinh viên dựa trên điểm
     public void BubbleStudents() {
@@ -110,14 +134,12 @@ public class StudentManager {
                     minIndex = j;
                 }
             }
-            // Hoán đổi sinh viên tại vị trí i với sinh viên có điểm nhỏ nhất
             if (minIndex != i) {
                 Students temp = students.get(i);
                 students.set(i, students.get(minIndex));
                 students.set(minIndex, temp);
             }
         }
-
         System.out.println("Students sorted by marks using Selection Sort:");
         display();
     }
@@ -128,7 +150,8 @@ public class StudentManager {
         } else {
             System.out.println("ID\tName\tMarks\tRank");
             for (Students student : students) {
-                System.out.println(student.getId() + "\t" + student.getName() + "\t" + student.getMarks() + "\t" + student.getRank());
+                System.out.println(student.getId() + "\t" + student.getName() + "\t"
+                        + student.getMarks() + "\t" + student.getRank());
             }
         }
     }

@@ -40,8 +40,6 @@ public class StudentManager {
                 if (student.getId().equals(studentId)) {
                     System.out.println("Current information of the student:");
                     System.out.println(student);
-
-                    // Nhập tên mới hợp lệ
                     String newName;
                     while (true) {
                         System.out.print("Enter new name (or press Enter to keep current): ");
@@ -55,8 +53,6 @@ public class StudentManager {
                     if (!newName.isEmpty()) {
                         student.setName(newName);
                     }
-
-                    // Nhập điểm mới và kiểm tra giới hạn
                     double newMarks;
                     while (true) {
                         System.out.print("Enter new marks (or -1 to keep current): ");
@@ -76,8 +72,6 @@ public class StudentManager {
                             sc.nextLine(); // Clear the invalid input
                         }
                     }
-
-
                     System.out.println("Student updated: " + student);
                     return;
                 }
@@ -171,11 +165,13 @@ public class StudentManager {
             } else {
                 System.out.println("ID\tName\tMarks\tRank");
                 for (Students student : students) {
-                    System.out.println(student.getId() + "\t" + student.getName() + "\t" + student.getMarks() + "\t" + student.getRank());
+                    System.out.println(student.getId() + "\t" + student.getName() + "\t"
+                            + student.getMarks() + "\t" + student.getRank());
                 }
             }
         } catch (Exception e) {
             System.out.println("Error displaying students: " + e.getMessage());
         }
     }
+
 }

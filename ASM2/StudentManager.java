@@ -1,5 +1,7 @@
 package ASM2;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -82,6 +84,33 @@ public class StudentManager {
                 System.out.println("No student found with ID or Name: " + query);
             }
         }
+
+    public void binarySearchByMarks(double targetMarks) {
+        // Sắp xếp danh sách trước khi tìm kiếm nhị phân
+        Collections.sort(students, Comparator.comparingDouble(Students::getMarks));
+
+        int left = 0, right = students.size() - 1;
+        boolean found = false;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            Students midStudent = students.get(mid);
+
+            if (midStudent.getMarks() == targetMarks) {
+                System.out.println("Student found: " + midStudent);
+                found = true;
+                break;
+            } else if (midStudent.getMarks() < targetMarks) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No student found with Marks: " + targetMarks);
+        }
+    }
 
         // Hàm sắp xếp nổi bọt để sắp xếp sinh viên dựa trên điểm
         public void BubbleStudents() {
